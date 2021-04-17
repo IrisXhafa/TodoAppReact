@@ -1,17 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './assets/scss/index.scss';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { FirebaseAppProvider } from 'reactfire';
+
+
+window.$ = $;
+window.Popper = Popper;
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBi_d7ZMVcMhduw4sNgkCZIeDnpx05NEpY",
+    authDomain: "todoapp-345b4.firebaseapp.com",
+    projectId: "todoapp-345b4",
+    storageBucket: "todoapp-345b4.appspot.com",
+    messagingSenderId: "81083597287",
+    appId: "1:81083597287:web:d4973a74fae178dcc9bd42",
+    measurementId: "G-0PBJXZGYQD"
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
